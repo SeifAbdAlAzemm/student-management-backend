@@ -313,4 +313,4 @@ If you encounter issues:
 3. Ensure port 3001 is available
 4. Check server logs in terminal for error messages
 
-For additional help, contact the assessment coordinator.
+For additional help, contact the assessment coordinator
