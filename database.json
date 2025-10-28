@@ -1,0 +1,214 @@
+{
+  "teacher": {
+    "email": "teacher@school.com",
+    "password": "teacher123",
+    "name": "John Smith",
+    "id": "teacher-001"
+  },
+  "students": [
+    {
+      "id": "stu-001",
+      "firstName": "Emma",
+      "lastName": "Johnson",
+      "email": "emma.johnson@email.com",
+      "age": 21,
+      "enrollmentDate": "2023-09-01",
+      "courses": [
+        "Mathematics",
+        "Physics",
+        "Computer Science",
+        "Data Science"
+      ]
+    },
+    {
+      "id": "stu-002",
+      "firstName": "Liam",
+      "lastName": "Williams",
+      "email": "liam.williams@email.com",
+      "age": 22,
+      "enrollmentDate": "2023-09-01",
+      "courses": [
+        "Advanced Mathematics",
+        "Quantum Physics"
+      ]
+    },
+    {
+      "id": "stu-003",
+      "firstName": "Olivia",
+      "lastName": "Brown",
+      "email": "olivia.brown@email.com",
+      "age": 21,
+      "enrollmentDate": "2022-09-01",
+      "courses": [
+        "Biology",
+        "Chemistry",
+        "Environmental Science"
+      ]
+    },
+    {
+      "id": "stu-004",
+      "firstName": "Noah",
+      "lastName": "Davis",
+      "email": "noah.davis@email.com",
+      "age": 20,
+      "enrollmentDate": "2023-01-15",
+      "courses": [
+        "Economics",
+        "Business Management",
+        "Statistics"
+      ]
+    },
+    {
+      "id": "stu-005",
+      "firstName": "Ava",
+      "lastName": "Martinez",
+      "email": "ava.martinez@email.com",
+      "age": 19,
+      "enrollmentDate": "2023-09-01",
+      "courses": [
+        "Art History",
+        "Studio Art",
+        "Design"
+      ]
+    },
+    {
+      "id": "stu-006",
+      "firstName": "Ethan",
+      "lastName": "Garcia",
+      "email": "ethan.garcia@email.com",
+      "age": 22,
+      "enrollmentDate": "2022-01-10",
+      "courses": [
+        "Computer Science",
+        "Mathematics",
+        "Data Science"
+      ]
+    },
+    {
+      "id": "stu-007",
+      "firstName": "Sophia",
+      "lastName": "Rodriguez",
+      "email": "sophia.rodriguez@email.com",
+      "age": 20,
+      "enrollmentDate": "2023-09-01",
+      "courses": [
+        "Psychology",
+        "Sociology",
+        "Communications"
+      ]
+    },
+    {
+      "id": "stu-008",
+      "firstName": "Mason",
+      "lastName": "Wilson",
+      "email": "mason.wilson@email.com",
+      "age": 21,
+      "enrollmentDate": "2022-09-01",
+      "courses": [
+        "Mechanical Engineering",
+        "Physics",
+        "Mathematics"
+      ]
+    },
+    {
+      "id": "stu-009",
+      "firstName": "Isabella",
+      "lastName": "Anderson",
+      "email": "isabella.anderson@email.com",
+      "age": 19,
+      "enrollmentDate": "2023-09-01",
+      "courses": [
+        "Political Science",
+        "International Relations",
+        "Law"
+      ]
+    },
+    {
+      "id": "stu-010",
+      "firstName": "James",
+      "lastName": "Thomas",
+      "email": "james.thomas@email.com",
+      "age": 20,
+      "enrollmentDate": "2023-01-15",
+      "courses": [
+        "Music Theory",
+        "Performance",
+        "Music History"
+      ]
+    },
+    {
+      "id": "stu-011",
+      "firstName": "Mia",
+      "lastName": "Taylor",
+      "email": "mia.taylor@email.com",
+      "age": 22,
+      "enrollmentDate": "2021-09-01",
+      "courses": [
+        "Nursing",
+        "Anatomy",
+        "Public Health"
+      ]
+    },
+    {
+      "id": "stu-012",
+      "firstName": "Benjamin",
+      "lastName": "Moore",
+      "email": "benjamin.moore@email.com",
+      "age": 19,
+      "enrollmentDate": "2023-09-01",
+      "courses": [
+        "Film Studies",
+        "Media Production",
+        "Digital Arts"
+      ]
+    },
+    {
+      "id": "stu-013",
+      "firstName": "Alice",
+      "lastName": "Cooper",
+      "email": "alice.cooper@email.com",
+      "age": 20,
+      "enrollmentDate": "2024-09-01",
+      "courses": [
+        "Computer Science",
+        "Mathematics",
+        "Physics"
+      ]
+    },
+    {
+      "id": "stu-014",
+      "firstName": "Bob",
+      "lastName": "Dylan",
+      "email": "bob.dylan@email.com",
+      "age": null,
+      "enrollmentDate": "2025-10-28",
+      "courses": []
+    },
+    {
+      "id": "stu-015",
+      "firstName": "Seif",
+      "lastName": "Ahmed",
+      "email": "seif.ahmed@email.com",
+      "age": 22,
+      "enrollmentDate": "2024-09-01",
+      "courses": [
+        "Computer Science",
+        "Mathematics",
+        "Physics"
+      ]
+    },
+    {
+      "id": "stu-016",
+      "firstName": "Mohamed",
+      "lastName": "Amr",
+      "email": "mohamed.amr@email.com",
+      "age": 24,
+      "enrollmentDate": "2024-09-01",
+      "courses": [
+        "Computer Science",
+        "Mathematics",
+        "Physics"
+      ]
+    }
+  ]
+}
