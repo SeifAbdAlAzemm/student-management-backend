@@ -46,6 +46,7 @@ function getInitialDatabase() {
       email: 'teacher@school.com',
       password: 'teacher123',
       name: 'John Smith',
+      image: 'https://reqres.in/img/faces/1-image.jpg',
       id: 'teacher-001'
     },
     students: [
@@ -56,6 +57,7 @@ function getInitialDatabase() {
         email: 'emma.johnson@email.com',
         age: 20,
         enrollmentDate: '2023-09-01',
+        image: 'https://reqres.in/img/faces/2-image.jpg',
         courses: ['Mathematics', 'Physics', 'Computer Science']
       },
       {
@@ -65,6 +67,7 @@ function getInitialDatabase() {
         email: 'liam.williams@email.com',
         age: 19,
         enrollmentDate: '2023-09-01',
+        image: 'https://reqres.in/img/faces/3-image.jpg',
         courses: ['English Literature', 'History', 'Philosophy']
       },
       {
@@ -74,6 +77,7 @@ function getInitialDatabase() {
         email: 'olivia.brown@email.com',
         age: 21,
         enrollmentDate: '2022-09-01',
+        image: 'https://reqres.in/img/faces/4-image.jpg',
         courses: ['Biology', 'Chemistry', 'Environmental Science']
       },
       {
@@ -83,6 +87,7 @@ function getInitialDatabase() {
         email: 'noah.davis@email.com',
         age: 20,
         enrollmentDate: '2023-01-15',
+        image: 'https://reqres.in/img/faces/5-image.jpg',
         courses: ['Economics', 'Business Management', 'Statistics']
       },
       {
@@ -92,6 +97,7 @@ function getInitialDatabase() {
         email: 'ava.martinez@email.com',
         age: 19,
         enrollmentDate: '2023-09-01',
+        image: 'https://reqres.in/img/faces/6-image.jpg',
         courses: ['Art History', 'Studio Art', 'Design']
       },
       {
@@ -101,6 +107,7 @@ function getInitialDatabase() {
         email: 'ethan.garcia@email.com',
         age: 22,
         enrollmentDate: '2022-01-10',
+        image: 'https://reqres.in/img/faces/7-image.jpg',
         courses: ['Computer Science', 'Mathematics', 'Data Science']
       },
       {
@@ -110,6 +117,7 @@ function getInitialDatabase() {
         email: 'sophia.rodriguez@email.com',
         age: 20,
         enrollmentDate: '2023-09-01',
+        image: 'https://reqres.in/img/faces/8-image.jpg',
         courses: ['Psychology', 'Sociology', 'Communications']
       },
       {
@@ -119,6 +127,7 @@ function getInitialDatabase() {
         email: 'mason.wilson@email.com',
         age: 21,
         enrollmentDate: '2022-09-01',
+        image: 'https://reqres.in/img/faces/9-image.jpg',
         courses: ['Mechanical Engineering', 'Physics', 'Mathematics']
       },
       {
@@ -128,6 +137,7 @@ function getInitialDatabase() {
         email: 'isabella.anderson@email.com',
         age: 19,
         enrollmentDate: '2023-09-01',
+        image: 'https://reqres.in/img/faces/10-image.jpg',
         courses: ['Political Science', 'International Relations', 'Law']
       },
       {
@@ -137,6 +147,7 @@ function getInitialDatabase() {
         email: 'james.thomas@email.com',
         age: 20,
         enrollmentDate: '2023-01-15',
+        image: 'https://reqres.in/img/faces/11-image.jpg',
         courses: ['Music Theory', 'Performance', 'Music History']
       },
       {
@@ -146,6 +157,7 @@ function getInitialDatabase() {
         email: 'mia.taylor@email.com',
         age: 22,
         enrollmentDate: '2021-09-01',
+        image: 'https://reqres.in/img/faces/12-image.jpg',
         courses: ['Nursing', 'Anatomy', 'Public Health']
       },
       {
@@ -155,6 +167,7 @@ function getInitialDatabase() {
         email: 'benjamin.moore@email.com',
         age: 19,
         enrollmentDate: '2023-09-01',
+        image: 'https://reqres.in/img/faces/13-image.jpg',
         courses: ['Film Studies', 'Media Production', 'Digital Arts']
       }
     ]
@@ -217,6 +230,38 @@ app.post('/api/auth/login', async (req, res) => {
   res.status(401).json({ error: 'Invalid credentials' });
 });
 
+// GET /api/stats - Get system statistics
+app.get('/api/stats', authenticateToken, async (req, res) => {
+  const db = await readDatabase();
+  const totalStudents = db.students.length;
+
+  const allCourses = new Set();
+  let totalAge = 0;
+  let validAges = 0;
+  let thisYearEnrollments = 0;
+  const currentYear = new Date().getFullYear();
+
+  db.students.forEach(student => {
+    student.courses.forEach(course => allCourses.add(course));
+    if (student.age !== null) {
+      totalAge += student.age;
+      validAges++;
+    }
+    if (new Date(student.enrollmentDate).getFullYear() === currentYear) {
+      thisYearEnrollments++;
+    }
+  });
+
+  const averageAge = validAges > 0 ? Math.round(totalAge / validAges) : null;
+
+  res.json({
+    totalStudents,
+    totalUniqueCourses: allCourses.size,
+    averageAge,
+    enrollmentsThisYear: thisYearEnrollments
+  });
+});
+
 // GET /api/students - Get paginated list of students
 app.get('/api/students', authenticateToken, async (req, res) => {
   const page = parseInt(req.query.page) || 1;
@@ -272,7 +317,7 @@ app.get('/api/students/:id', authenticateToken, async (req, res) => {
 
 // POST /api/students - Create new student
 app.post('/api/students', authenticateToken, async (req, res) => {
-  const { firstName, lastName, email, age, enrollmentDate, courses } = req.body;
+  const { firstName, lastName, email, age, enrollmentDate, courses, image } = req.body;
 
   // Validation
   if (!firstName || !lastName || !email) {
@@ -301,6 +346,7 @@ app.post('/api/students', authenticateToken, async (req, res) => {
     email,
     age: age || null,
     enrollmentDate: enrollmentDate || new Date().toISOString().split('T')[0],
+    image: image || `https://reqres.in/img/faces/${Math.floor(Math.random() * 12) + 1}-image.jpg`,
     courses: courses || []
   };
 
@@ -313,7 +359,7 @@ app.post('/api/students', authenticateToken, async (req, res) => {
 // PUT /api/students/:id - Update student
 app.put('/api/students/:id', authenticateToken, async (req, res) => {
   const { id } = req.params;
-  const { firstName, lastName, email, age, enrollmentDate, courses } = req.body;
+  const { firstName, lastName, email, age, enrollmentDate, courses, image } = req.body;
 
   const db = await readDatabase();
   const studentIndex = db.students.findIndex(s => s.id === id);
@@ -343,6 +389,7 @@ app.put('/api/students/:id', authenticateToken, async (req, res) => {
     email: email || db.students[studentIndex].email,
     age: age !== undefined ? age : db.students[studentIndex].age,
     enrollmentDate: enrollmentDate || db.students[studentIndex].enrollmentDate,
+    image: image || db.students[studentIndex].image,
     courses: courses !== undefined ? courses : db.students[studentIndex].courses
   };
 
@@ -397,6 +444,7 @@ async function startServer() {
     console.log(`📡 Server running on http://localhost:${PORT}`);
     console.log(`\n📚 API Endpoints:`);
     console.log(`   POST   http://localhost:${PORT}/api/auth/login`);
+    console.log(`   GET    http://localhost:${PORT}/api/stats`);
     console.log(`   GET    http://localhost:${PORT}/api/students`);
     console.log(`   GET    http://localhost:${PORT}/api/students/:id`);
     console.log(`   POST   http://localhost:${PORT}/api/students`);
